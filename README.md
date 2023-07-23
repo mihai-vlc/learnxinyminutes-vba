@@ -10,9 +10,10 @@ See the `Setup locally` section for more details.
 ```shell
 # One time setup
 pip install -U oletools
-python .\tools\install-git-hooks.py
+python ./tools/install-git-hooks.py
 
 # Make chanes to the .xlsm file ...
+git add Excel-macros.xlsm
 git commit -m "Description of the changes"
 ```
 
