@@ -5,8 +5,8 @@ import stat
 PRE_COMMIT_CONTENT = """\
 #!/bin/sh
 
-# python .git/hooks/pre-commit.py
-echo ./*.vba
+python tools/extract-vba-code.py
+git add -- *.vba
 """
 
 def install_hooks():
@@ -18,7 +18,7 @@ def install_hooks():
         st = os.stat(pre_commit_path)
         os.chmod(pre_commit_path, st.st_mode | stat.S_IEXEC)
 
-    print(f"Written {pre_commit_path} successfully !")
+    print(f"written {pre_commit_path} successfully !")
 
 if __name__ == '__main__':
     install_hooks()
