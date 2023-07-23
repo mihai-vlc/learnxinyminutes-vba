@@ -14,6 +14,10 @@ Private Sub Worksheet_Activate()
 End Sub
 
 Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+    If activeUser Is Nothing Then
+        Set activeUser = modFactory.CreatePerson("John", "Doe", 1990)
+    End If
+    
     activeUser.Yob = modRandom.RandInt(1990, 2010)
 End Sub
 
