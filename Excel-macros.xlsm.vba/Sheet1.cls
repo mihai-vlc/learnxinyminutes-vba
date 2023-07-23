@@ -28,3 +28,4 @@ Private Sub InitActiveUser()
         Set activeUser = modFactory.CreatePerson("John", "Doe", 1990)
     End If
 End Sub
+

@@ -9,7 +9,7 @@ CHANGED=$(git diff --staged --name-only --diff-filter=ACMRTUXB)
 EXCEL=".xlsm"
 
 if [[ "$CHANGED" =~ .*"$EXCEL".* ]]; then
-  echo "Found modified excel file"
+    echo "Found modified excel file"
     python tools/extract-vba-code.py
     git add -- *.vba
 else
