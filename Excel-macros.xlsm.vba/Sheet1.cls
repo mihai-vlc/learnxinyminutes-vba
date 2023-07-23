@@ -10,17 +10,21 @@ Private WithEvents activeUser As clsPerson
 Attribute activeUser.VB_VarHelpID = -1
 
 Private Sub Worksheet_Activate()
-    Set activeUser = modFactory.CreatePerson("John", "Doe", 1990)
+    Call InitActiveUser
 End Sub
 
 Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    If activeUser Is Nothing Then
-        Set activeUser = modFactory.CreatePerson("John", "Doe", 1990)
-    End If
+    Call InitActiveUser
     
     activeUser.Yob = modRandom.RandInt(1990, 2010)
 End Sub
 
 Private Sub activeUser_YobChanged(ByVal newValue As Integer)
     Debug.Print ("Yob changed to " & newValue)
+End Sub
+
+Private Sub InitActiveUser()
+    If activeUser Is Nothing Then
+        Set activeUser = modFactory.CreatePerson("John", "Doe", 1990)
+    End If
 End Sub
