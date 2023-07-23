@@ -5,8 +5,16 @@ import stat
 PRE_COMMIT_CONTENT = """\
 #!/bin/sh
 
-python tools/extract-vba-code.py
-git add -- *.vba
+CHANGED=$(git diff --staged --name-only --diff-filter=ACMRTUXB)
+EXCEL=".xlsm"
+
+if [[ "$CHANGED" =~ .*"$EXCEL".* ]]; then
+  echo "Found modified excel file"
+    python tools/extract-vba-code.py
+    git add -- *.vba
+else
+    echo "No excel files staged, skipping file generation"
+fi
 """
 
 def install_hooks():

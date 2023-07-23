@@ -29,5 +29,5 @@ if __name__ == '__main__':
                 shutil.rmtree(os.path.join(root, f))
 
         for f in files:
-            if f.endswith(EXCEL_FILE_EXTENSIONS):
+            if f.endswith(EXCEL_FILE_EXTENSIONS) and not f.startswith("~$"):
                 parse(os.path.join(root, f))
