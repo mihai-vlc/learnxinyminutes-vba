@@ -8,6 +8,8 @@ Attribute VB_TemplateDerived = False
 Attribute VB_Customizable = False
 Option Explicit
 
+Implements iPrintable
+
 Public FirstName As String
 Public LastName As String
 Private p_yob As Integer
@@ -37,8 +39,13 @@ Public Property Let Yob(ByVal val As Integer)
     RaiseEvent YobChanged(val)
 End Property
 
-
-Public Sub PrintInfo()
+' makes PrintInfo available on variables of type iPrintable
+Public Sub iPrintable_PrintInfo()
     Debug.Print (Me.FullName & " is " & Me.Age & " years old")
+End Sub
+
+' this enables the method to work on class instances as well
+Public Sub PrintInfo()
+    Call Me.iPrintable_PrintInfo
 End Sub
 

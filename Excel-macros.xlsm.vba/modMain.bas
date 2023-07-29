@@ -13,7 +13,7 @@ Public Sub Main()
     ' Select all and Delete to clear the immediate window
     
     ' Strings use double quotes, use & for concatenation
-    Debug.Print ("4 + 7 = " & Add(4, 7))
+    Debug.Print ("4 + 7 = " & MyAdd(4, 7))
 
     modLogger.ActiveLogLevel = modLogger.LL_WARN
 
@@ -38,26 +38,29 @@ Public Sub Main()
 End Sub
 
 ' functions return values, use ByVal until you need ByRef
-Private Function Add(ByVal a As Integer, ByVal b As Integer) As Integer
-    Dim result As Integer
+' functions can be used in regular excel cells
+Public Function MyAdd(ByVal a As Long, ByVal b As Long) As Long
+    Dim result As Long
     
     result = a + b
 
     ' Return uses the name of the function
-    Add = result
+    MyAdd = result
 End Function
 
 
 Private Sub DeclareVariables()
     Debug.Print ("---- DECLARE VARIABLES ----")
-    Dim x As Integer
+    Dim x As Long
     x = 42
+    
+    Const PI = 3.1415926535
     
     ' intialized as false
     Dim flag As Boolean
     flag = True ' or False
 
-    Debug.Print (x & " " & flag)
+    Debug.Print (x & " " & flag & " " & PI)
 
     Dim p1 As clsPerson
     ' For objects use Set
