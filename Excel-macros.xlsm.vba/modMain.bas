@@ -277,6 +277,10 @@ Private Sub WorkingWithFiles()
     selectedFile = modFileSystem.GetExistingFilePathFromUser("Select report")
     Debug.Print ("Existing file " & selectedFile)
 
+    selectedFile = modFileSystem.GetFolderPathFromUser("Select working folder")
+    Debug.Print ("Folder " & selectedFile)
+
+
 End Sub
 
 Private Sub EnvironmentVariables()

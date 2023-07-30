@@ -142,3 +142,20 @@ Public Function GetExistingFilePathFromUser(Optional ByVal windowTitle As String
     
     GetExistingFilePathFromUser = result
 End Function
+
+
+Public Function GetFolderPathFromUser(Optional ByVal title As String = "Select working folder")
+    Dim folder As FileDialog
+    Dim path As String
+    
+    Set folder = Application.FileDialog(msoFileDialogFolderPicker)
+
+    folder.AllowMultiSelect = False
+    folder.title = title
+
+    If folder.Show = -1 Then
+        path = folder.SelectedItems(1)
+    End If
+    
+    GetFolderPathFromUser = path
+End Function
