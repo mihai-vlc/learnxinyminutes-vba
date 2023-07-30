@@ -157,9 +157,9 @@ Private Sub ControlStructures()
     myList.Add ("B")
     myList.Add ("C")
     
-    Dim Item As Variant
-    For Each Item In myList
-        Debug.Print ("item = " & Item)
+    Dim item As Variant
+    For Each item In myList
+        Debug.Print ("item = " & item)
     Next
     
     ' List of objects
@@ -205,7 +205,7 @@ Private Sub CollectionAndDictionary()
 
     Dim key As Variant
     For Each key In codeToName
-        Debug.Print ("key = " & key & " = " & codeToName.Item(key))
+        Debug.Print ("key = " & key & " = " & codeToName.item(key))
     Next
     
     
@@ -240,9 +240,19 @@ Private Sub WorkingWithFiles()
         Debug.Print ("Created C:\tmp\vba\sub\folder")
     End If
 
+    Call modFileSystem.WriteTextFile("C:\tmp\vba\sub\folder\temp.txt", "Temp file")
+    Debug.Print ("Created C:\tmp\vba\sub\folder\temp.txt")
+
+    Call modFileSystem.DeleteFile("C:\tmp\vba\sub\folder\temp.txt")
+    Debug.Print ("Deleted C:\tmp\vba\sub\folder\temp.txt")
+
+    ' Folder should be empty before delete
+    Call modFileSystem.DeleteFolder("C:\tmp\vba\sub\folder")
+    Debug.Print ("Deleted C:\tmp\vba\sub\folder")
+
     Dim resultPath As String
     resultPath = "C:\tmp\vba\calc-result.txt"
-    
+
     If modFileSystem.FileExists(resultPath) Then
         Call modFileSystem.AppendTextFile(resultPath, "Adding to existing results")
         Debug.Print ("Added information to exsting file")
@@ -250,6 +260,22 @@ Private Sub WorkingWithFiles()
         Call modFileSystem.WriteTextFile(resultPath, "First line of the file")
         Debug.Print ("Created result file")
     End If
+
+    Dim folderContent As Collection
+    Set folderContent = modFileSystem.ListFolder("C:\tmp\vba", "*") ' use *.txt to filter by file type
+
+    Debug.Print ("Listing C:\tmp\vba, found " & folderContent.Count & " items")
+    Dim item As Variant
+    For Each item In folderContent
+        Debug.Print ("    " & item)
+    Next
+        
+    Dim selectedFile As String
+    selectedFile = modFileSystem.GetNewFilePathFromUser("report.txt")
+    Debug.Print ("New file " & selectedFile)
+    
+    selectedFile = modFileSystem.GetExistingFilePathFromUser("Select report")
+    Debug.Print ("Existing file " & selectedFile)
 
 End Sub
 
