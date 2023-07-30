@@ -242,9 +242,12 @@ Private Sub WorkingWithFiles()
 
     Call modFileSystem.WriteTextFile("C:\tmp\vba\sub\folder\temp.txt", "Temp file")
     Debug.Print ("Created C:\tmp\vba\sub\folder\temp.txt")
+    
+    Call modFileSystem.Rename("C:\tmp\vba\sub\folder\temp.txt", "C:\tmp\vba\sub\folder\temp-renamed.txt")
+    Debug.Print ("Renamed C:\tmp\vba\sub\folder\temp.txt -> C:\tmp\vba\sub\folder\temp-renamed.txt")
 
-    Call modFileSystem.DeleteFile("C:\tmp\vba\sub\folder\temp.txt")
-    Debug.Print ("Deleted C:\tmp\vba\sub\folder\temp.txt")
+    Call modFileSystem.DeleteFile("C:\tmp\vba\sub\folder\temp-renamed.txt")
+    Debug.Print ("Deleted C:\tmp\vba\sub\folder\temp-renamed.txt")
 
     ' Folder should be empty before delete
     Call modFileSystem.DeleteFolder("C:\tmp\vba\sub\folder")

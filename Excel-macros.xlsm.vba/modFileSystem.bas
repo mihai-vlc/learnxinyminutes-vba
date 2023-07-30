@@ -36,6 +36,9 @@ Public Function ReadTextFile(ByVal filePath As String) As String
     ReadTextFile = content
 End Function
 
+Public Sub Rename(ByVal oldPath As String, ByVal newPath As String)
+    Name oldPath As newPath
+End Sub
 
 Public Function FolderExists(ByVal fullPath As String) As Boolean
     If fullPath = vbNullString Then
