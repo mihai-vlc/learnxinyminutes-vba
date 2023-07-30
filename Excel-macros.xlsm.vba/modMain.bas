@@ -32,7 +32,8 @@ Public Sub Main()
     Call ControlStructures
     Call CollectionAndDictionary
     Call WorkingWithFiles
-    
+    Call EnvironmentVariables
+
     ' For 3rd party libraries see https://github.com/sancarn/awesome-vba
 
 End Sub
@@ -221,8 +222,40 @@ Private Sub WorkingWithFiles()
     
     Dim content As String
     content = modFileSystem.ReadTextFile("C:\tmp\result.txt")
-
     Debug.Print (content)
+    
+    
+    If Not modFileSystem.FolderExists("C:\tmp\vba") Then
+        Call MkDir("C:\tmp\vba")
+        Debug.Print ("Created C:\tmp\vba")
+    End If
+    
+    If Not modFileSystem.FolderExists("C:\tmp\vba\sub") Then
+        Call MkDir("C:\tmp\vba\sub")
+        Debug.Print ("Created C:\tmp\vba\sub")
+    End If
+    
+    If Not modFileSystem.FolderExists("C:\tmp\vba\sub\folder") Then
+        Call MkDir("C:\tmp\vba\sub\folder")
+        Debug.Print ("Created C:\tmp\vba\sub\folder")
+    End If
+
+    Dim resultPath As String
+    resultPath = "C:\tmp\vba\calc-result.txt"
+    
+    If modFileSystem.FileExists(resultPath) Then
+        Call modFileSystem.AppendTextFile(resultPath, "Adding to existing results")
+        Debug.Print ("Added information to exsting file")
+    Else
+        Call modFileSystem.WriteTextFile(resultPath, "First line of the file")
+        Debug.Print ("Created result file")
+    End If
+
 End Sub
 
+Private Sub EnvironmentVariables()
+    Dim homeFolder As String
+    homeFolder = Environ("USERPROFILE")
+    Debug.Print ("home = " & homeFolder)
+End Sub
 

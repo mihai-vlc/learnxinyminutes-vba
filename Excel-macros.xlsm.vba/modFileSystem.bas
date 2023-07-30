@@ -36,3 +36,33 @@ Public Function ReadTextFile(ByVal filePath As String) As String
     ReadTextFile = content
 End Function
 
+
+Public Function FolderExists(strFullPath As String) As Boolean
+    If strFullPath = vbNullString Then
+        FolderExists = False
+        Exit Function
+    End If
+    
+    If Dir(strFullPath, vbDirectory) = vbNullString Then
+        FolderExists = False
+        Exit Function
+    End If
+    
+    FolderExists = True
+End Function
+
+
+Public Function FileExists(strFullPath As String) As Boolean
+    If strFullPath = vbNullString Then
+        FileExists = False
+        Exit Function
+    End If
+    
+    If Dir(strFullPath) = vbNullString Then
+        FileExists = False
+        Exit Function
+    End If
+    
+    FileExists = True
+End Function
+
