@@ -12,6 +12,8 @@ Public Sub Main()
     Debug.Print ("Hello World")
     ' Select all and Delete to clear the immediate window
     
+    Debug.Assert (4 = 5)
+    
     ' Strings use double quotes, use & for concatenation
     Debug.Print ("4 + 7 = " & MyAdd(4, 7))
 
@@ -153,9 +155,12 @@ Private Sub ControlStructures()
     
     ' List of primitives
     Dim myList As New Collection
+
     myList.Add ("A")
     myList.Add ("B")
     myList.Add ("C")
+    
+    Call modAssert.AssertCollection(myList)
     
     Dim item As Variant
     For Each item In myList
@@ -291,4 +296,6 @@ Private Sub EnvironmentVariables()
     homeFolder = Environ("USERPROFILE")
     Debug.Print ("home = " & homeFolder)
 End Sub
+
+
 
